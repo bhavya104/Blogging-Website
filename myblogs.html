@@ -1,0 +1,86 @@
+          
+                <!-- After Blog Post Area -->
+                <br>
+                <div class="text-center bg-light text-dark">
+                    <h3>My Blogs</h3>
+                </div>
+
+                <hr>
+                <br>
+
+                <div class="row container-fluid bg-3">
+                    <div class="col-sm-12" id="blogs">
+
+                    </div>
+                </div>
+                <br>
+                <!-- After Blog Post Area Ends -->
+
+                <!-- Validation And Uploading of post blogs -->
+                <script>
+                        // Retrieve and Display data from Firebase
+
+                        var user = firebase.auth().currentUser;
+                        var dbBlogs = firebase.database().ref().child("Blogs").orderByChild("uid").equalTo(user.uid);
+
+                        dbBlogs.on("value", function(blogs)
+                        {
+                            if(blogs.exists())
+                            {
+                                var blogsHtml = "";
+
+                                blogs.forEach(function(singleBlog)
+                                {
+                                    counter = counter + 1;
+
+                                    blogsHtml += "<div class='jumbotron bg-light text-dark border border-dark'>";
+                                        blogsHtml += "<div> <img width='1000px' height='550px' src='";
+                                            blogsHtml += singleBlog.val().image;
+                                            blogsHtml += "'/> </div> <br>"; 
+
+                                            blogsHtml += "<div class='row'>";
+                                                blogsHtml += "<div class='col-sm-5'> <p style='color:grey;'>"
+                                                             + "Published by: " + singleBlog.val().userName
+                                                             + "</p> </div>" + 
+
+                                                            "<div class='col-sm-3'> <p style='color:grey;'>"
+                                                             + "Time: " + singleBlog.val().time
+                                                             + "</p> </div>" + 
+
+                                                             "<div class='col-sm-4'> <p style='color:grey; margin-left: 75px;'>"
+                                                             + "Date: " + singleBlog.val().date
+                                                             + "</p> </div>";
+                                        blogsHtml += "</div> <br>"; 
+
+                                            blogsHtml += "<div style='text-align: justify; color: black;'>";
+                                            blogsHtml += singleBlog.val().desc;
+                                            blogsHtml += "</div> <br>"; 
+
+
+                                            blogsHtml += "<div class='form-group' style='text-align: justify; color: black;'>";
+                                            blogsHtml += "<button class='form-control btn btn-light bg-dark text-white' onclick=deleteblogRecord('"+singleBlog.key+"')>Delete Blog</button>";
+                                            blogsHtml += "</div> <br>"; 
+
+                                    blogsHtml += "</div>";    
+                                });
+
+                                $("#blogs").html(blogsHtml);
+                            }
+                        });
+
+                        function deleteblogRecord(key)
+                        {
+                            var deleteRef = firebase.database().ref().child("Blogs").child(key);
+                            return deleteRef.remove()
+                            .then(function()
+                            {
+                                console.log("Post Removed Successfully");
+                            })
+                            .catch(function()
+                            {
+                                console.log("Error Occured..");
+                            });
+                        }
+                        // Retrieve and Display data from Firebase Ends Here
+                </script>
+                <!-- Validation And Uploading of post blogs Ends Here-->

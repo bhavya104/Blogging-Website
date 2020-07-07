@@ -25,7 +25,7 @@ $("#btn-login").click(function(){
 
     result.catch(function(error)
     {
-      var errorCode = error.code();
+      var errorCode = error.code;
       var errorMessage = error.message;
 
       console.log(errorCode);
@@ -49,7 +49,6 @@ $("#btn-logout").click(function()
 
 
 
-
 $("#btn-signup").click(function(){
 
   var email = $("#email").val();
@@ -64,7 +63,7 @@ $("#btn-signup").click(function(){
       var result = firebase.auth().createUserWithEmailAndPassword(email,password);
       result.catch(function(error)
       {
-        var errorCode = error.code();
+        var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
@@ -98,7 +97,7 @@ $("#btn-resetPassword").click(function()
     })
     .catch(function(error)
     {
-      var errorCode = error.code();
+      var errorCode = error.code;
       var errorMessage = error.message;
       console.log(errorCode);
       console.log(errorMessage);
@@ -147,7 +146,7 @@ $("#btn-update").click(function()
     {
       if(error)
       {
-        var errorCode = error.code();
+        var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
@@ -163,7 +162,20 @@ $("#btn-update").click(function()
   }
   else
   {
-    window.location.href = "MainPage.html";
+    window.alert("InComplete Form Please Fill all the sections.");
   }
 
 });
+
+
+function switchView(view)
+{
+  $.get({
+    url:view,
+    cache:false,
+  })
+  .then(function(data)
+  {
+    $("#container").html(data);
+  });
+}
