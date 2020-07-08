@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Index</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="design_files/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">    
+        
+        <link rel="stylesheet" href="design_files/css/style.css"> 
+
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script>
+    </head>
+
+    <body style="background: greenyellow;"> 
+        
+        <div class="jumbotron" style="background: black; text-align: center; height: 160px;">
+            <h1 style="color: beige;">Welcome To My Blogs</h1>
+        </div>
+
+                <div class="form-group container-login100-form-btn" style="">
+                    <button id="loginPage" type="button" style="margin-left:auto;margin-right:auto;display:block;margin-top:15%;margin-bottom:0%">
+                        Continue
+                        <i class="zmdi zmdi-arrow-right"></i>
+                    </button>
+                </div>
+            
+            
+        <script>
+            $("#loginPage").click(function()
+            {
+                window.location.href="signin.html";
+            });
+        </script>
+        </body>
+    </html>
